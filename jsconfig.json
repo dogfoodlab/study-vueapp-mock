@@ -1,0 +1,17 @@
+{
+  "include": [
+    "./src/**/*",
+    "./tests/**/*"
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@unit/*": [
+        "tests/unit/*"
+      ]
+    }
+  }
+}
