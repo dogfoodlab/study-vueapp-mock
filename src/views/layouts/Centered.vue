@@ -1,5 +1,5 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="centered">
     <v-container
       class="fill-height"
       fluid
