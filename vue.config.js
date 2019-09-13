@@ -1,7 +1,10 @@
+const DEV = 'development'
+const isDev = process.env.NODE_ENV === DEV
+
 module.exports = {
   configureWebpack: {
-    devtool: 'source-map'
+    devtool: isDev ? 'source-map' : false
   },
-  publicPath: '/'
-  // productionSourceMap: false
+  publicPath: '',
+  productionSourceMap: false
 }
