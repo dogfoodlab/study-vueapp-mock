@@ -13,7 +13,7 @@
         flat
         hide-details
         label="Search"
-        prepend-inner-icon="search"
+        prepend-inner-icon="mdi-magnify"
       ></v-text-field>
       <div class="flex-grow-1"></div>
     </v-app-bar>
@@ -127,20 +127,20 @@ export default {
   data: () => ({
     drawer: null,
     items: [
-      { icon: 'lightbulb_outline', text: 'Notes' },
-      { icon: 'touch_app', text: 'Reminders' },
+      { icon: 'mdi-lightbulb-outline', text: 'Notes' },
+      { icon: 'mdi-gesture-tap-hold', text: 'Reminders' },
       { divider: true },
       { heading: 'Labels' },
-      { icon: 'add', text: 'Create new label' },
+      { icon: 'mdi-plus', text: 'Create new label' },
       { divider: true },
-      { icon: 'archive', text: 'Archive' },
-      { icon: 'delete', text: 'Trash' },
+      { icon: 'mdi-package-down', text: 'Archive' },
+      { icon: 'mdi-delete', text: 'Trash' },
       { divider: true },
-      { icon: 'settings', text: 'Settings' },
-      { icon: 'chat_bubble', text: 'Trash' },
-      { icon: 'help', text: 'Help' },
-      { icon: 'phonelink', text: 'App downloads' },
-      { icon: 'keyboard', text: 'Keyboard shortcuts' }
+      { icon: 'mdi-settings', text: 'Settings' },
+      { icon: 'mdi-message', text: 'Send feedback' },
+      { icon: 'mdi-help-circle', text: 'Help' },
+      { icon: 'mdi-cellphone-link', text: 'App downloads' },
+      { icon: 'mdi-keyboard', text: 'Keyboard shortcuts' }
     ]
   })
 }
