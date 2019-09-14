@@ -37,6 +37,9 @@
           </ul>
         </li>
         <li>
+          <router-link :to="{name:'i18n'}">i18n</router-link>
+        </li>
+        <li>
           <router-link :to="{name:'vuetify'}">Vuetify</router-link>
         </li>
         <li>

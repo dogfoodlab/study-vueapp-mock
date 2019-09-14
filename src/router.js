@@ -14,6 +14,8 @@ import LayoutGoogleKeep from '@/views/layouts/GoogleKeep'
 import LayoutGoogleYoutube from '@/views/layouts/GoogleYoutube'
 import LayoutSandbox from '@/views/layouts/Sandbox'
 
+import I18n from '@/views/I18n'
+
 Vue.use(Router)
 
 export default new Router({
@@ -74,6 +76,11 @@ export default new Router({
       path: '/layouts/sabdbox',
       name: 'layouts/sandbox',
       component: LayoutSandbox
+    },
+    {
+      path: '/i18n',
+      name: 'i18n',
+      component: I18n
     },
     {
       path: '/vuetify',
