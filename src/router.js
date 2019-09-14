@@ -1,8 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from '@/views/Home'
-import Vuetify from '@/views/Vuetify'
-
 import LayoutHome from '@/views/layouts/Home'
 import LayoutBaseline from '@/views/layouts/Baseline'
 import LayoutBaselineFlipped from '@/views/layouts/BaselineFlipped'
@@ -13,8 +11,8 @@ import LayoutGoogleContacts from '@/views/layouts/GoogleContacts'
 import LayoutGoogleKeep from '@/views/layouts/GoogleKeep'
 import LayoutGoogleYoutube from '@/views/layouts/GoogleYoutube'
 import LayoutSandbox from '@/views/layouts/Sandbox'
-
 import I18n from '@/views/I18n'
+import Vuetify from '@/views/Vuetify'
 
 Vue.use(Router)
 
