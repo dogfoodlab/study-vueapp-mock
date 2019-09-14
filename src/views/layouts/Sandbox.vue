@@ -128,6 +128,9 @@ export default {
     footer: {
       inset: false
     }
-  })
+  }),
+  destroyed () {
+    this.$vuetify.theme.dark = false
+  }
 }
 </script>

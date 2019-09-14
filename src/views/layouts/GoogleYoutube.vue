@@ -149,6 +149,9 @@ export default {
   }),
   created () {
     this.$vuetify.theme.dark = true
+  },
+  destroyed () {
+    this.$vuetify.theme.dark = false
   }
 }
 </script>
