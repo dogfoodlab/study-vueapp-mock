@@ -1,11 +1,11 @@
-import Index from '@/views/plugins/Index'
+import Plugins from '@/views/plugins/Plugins'
 import Vuetify from '@/views/plugins/Vuetify'
 import I18n from '@/views/plugins/I18n'
 
 export default {
   path: '/pulgins',
   name: 'plugins',
-  component: Index,
+  component: Plugins,
   children: [
     {
       path: 'vuetify',

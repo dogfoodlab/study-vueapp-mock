@@ -1,4 +1,4 @@
-import Index from '@/views/layouts/Index'
+import Layouts from '@/views/layouts/Layouts'
 import Baseline from '@/views/layouts/Baseline'
 import BaselineFlipped from '@/views/layouts/BaselineFlipped'
 import Centered from '@/views/layouts/Centered'
@@ -12,7 +12,7 @@ import Sandbox from '@/views/layouts/Sandbox'
 export default {
   path: '/layouts',
   name: 'layouts',
-  component: Index,
+  component: Layouts,
   children: [
     {
       path: 'baseline',

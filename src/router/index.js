@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home'
-import LayoutRoutes from '@/router/layout-routes'
-import PluginRoutes from '@/router/plugin-routes'
+import Layouts from '@/router/layouts'
+import Plugins from '@/router/plugins'
 
 Vue.use(VueRouter)
 
@@ -15,8 +15,8 @@ export default new VueRouter({
       name: 'home',
       component: Home
     },
-    { ...LayoutRoutes },
-    { ...PluginRoutes },
+    { ...Layouts },
+    { ...Plugins },
     {
       path: '/about',
       name: 'about',
