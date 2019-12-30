@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <v-container>
 
     <v-app-bar
       app
@@ -42,7 +42,7 @@
       <HelloWorld />
     </v-content>
 
-  </div>
+  </v-container>
 </template>
 
 <script>
