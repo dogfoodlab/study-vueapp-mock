@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home'
-import LayoutHome from '@/views/layouts/Home'
+import Layouts from '@/views/Layouts'
 import LayoutBaseline from '@/views/layouts/Baseline'
 import LayoutBaselineFlipped from '@/views/layouts/BaselineFlipped'
 import LayoutCentered from '@/views/layouts/Centered'
@@ -28,52 +28,54 @@ export default new VueRouter({
     {
       path: '/layouts',
       name: 'layouts',
-      component: LayoutHome
-    },
-    {
-      path: '/layouts/baseline',
-      name: 'layouts/baseline',
-      component: LayoutBaseline
-    },
-    {
-      path: '/layouts/baseline-flipped',
-      name: 'layouts/baseline-flipped',
-      component: LayoutBaselineFlipped
-    },
-    {
-      path: '/layouts/centered',
-      name: 'layouts/centered',
-      component: LayoutCentered
-    },
-    {
-      path: '/layouts/complex',
-      name: 'layouts/complex',
-      component: LayoutComplex
-    },
-    {
-      path: '/layouts/dark',
-      name: 'layouts/dark',
-      component: LayoutDark
-    },
-    {
-      path: '/layouts/google-contacts',
-      name: 'layouts/google-contacts',
-      component: LayoutGoogleContacts
-    },
-    {
-      path: '/layouts/baseline-google-keep',
-      name: 'layouts/google-keep',
-      component: LayoutGoogleKeep
-    },
-    {
-      path: '/layouts/google-youtube',
-      name: 'layouts/google-youtube',
-      component: LayoutGoogleYoutube
-    },
-    {
-      path: '/layouts/sabdbox',
-      name: 'layouts/sandbox',
-      component: LayoutSandbox
+      component: Layouts,
+      children: [
+        {
+          path: '/baseline',
+          name: 'layouts/baseline',
+          component: LayoutBaseline
+        },
+        {
+          path: '/baseline-flipped',
+          name: 'layouts/baseline-flipped',
+          component: LayoutBaselineFlipped
+        },
+        {
+          path: '/centered',
+          name: 'layouts/centered',
+          component: LayoutCentered
+        },
+        {
+          path: '/complex',
+          name: 'layouts/complex',
+          component: LayoutComplex
+        },
+        {
+          path: '/dark',
+          name: 'layouts/dark',
+          component: LayoutDark
+        },
+        {
+          path: '/google-contacts',
+          name: 'layouts/google-contacts',
+          component: LayoutGoogleContacts
+        },
+        {
+          path: '/google-keep',
+          name: 'layouts/google-keep',
+          component: LayoutGoogleKeep
+        },
+        {
+          path: '/google-youtube',
+          name: 'layouts/google-youtube',
+          component: LayoutGoogleYoutube
+        },
+        {
+          path: '/sabdbox',
+          name: 'layouts/sandbox',
+          component: LayoutSandbox
+        }
+      ]
     },
     {
       path: '/i18n',

@@ -64,7 +64,7 @@
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-icon
         class="mx-4"
-        size="32"
+        large
       >mdi-youtube</v-icon>
       <v-toolbar-title class="mr-12 align-center">
         <span class="title">Youtube</span>
