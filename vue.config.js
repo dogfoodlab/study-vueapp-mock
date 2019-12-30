@@ -5,7 +5,7 @@ module.exports = {
     devtool: isDev ? 'source-map' : false
   },
 
-  publicPath: '',
+  publicPath: '/',
 
   productionSourceMap: false,
   /*

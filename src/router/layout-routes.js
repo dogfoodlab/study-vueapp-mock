@@ -1,63 +1,63 @@
-import Layouts from '@/views/Layouts'
-import LayoutBaseline from '@/views/layouts/Baseline'
-import LayoutBaselineFlipped from '@/views/layouts/BaselineFlipped'
-import LayoutCentered from '@/views/layouts/Centered'
-import LayoutComplex from '@/views/layouts/Complex'
-import LayoutDark from '@/views/layouts/Dark'
-import LayoutGoogleContacts from '@/views/layouts/GoogleContacts'
-import LayoutGoogleKeep from '@/views/layouts/GoogleKeep'
-import LayoutGoogleYoutube from '@/views/layouts/GoogleYoutube'
-import LayoutSandbox from '@/views/layouts/Sandbox'
+import Home from '@/views/layouts/Home'
+import Baseline from '@/views/layouts/Baseline'
+import BaselineFlipped from '@/views/layouts/BaselineFlipped'
+import Centered from '@/views/layouts/Centered'
+import Complex from '@/views/layouts/Complex'
+import Dark from '@/views/layouts/Dark'
+import GoogleContacts from '@/views/layouts/GoogleContacts'
+import GoogleKeep from '@/views/layouts/GoogleKeep'
+import GoogleYoutube from '@/views/layouts/GoogleYoutube'
+import Sandbox from '@/views/layouts/Sandbox'
 
 export default {
   path: '/layouts',
   name: 'layouts',
-  component: Layouts,
+  component: Home,
   children: [
     {
-      path: '/baseline',
+      path: 'baseline',
       name: 'layouts/baseline',
-      component: LayoutBaseline
+      component: Baseline
     },
     {
-      path: '/baseline-flipped',
+      path: 'baseline-flipped',
       name: 'layouts/baseline-flipped',
-      component: LayoutBaselineFlipped
+      component: BaselineFlipped
     },
     {
-      path: '/centered',
+      path: 'centered',
       name: 'layouts/centered',
-      component: LayoutCentered
+      component: Centered
     },
     {
-      path: '/complex',
+      path: 'complex',
       name: 'layouts/complex',
-      component: LayoutComplex
+      component: Complex
     },
     {
-      path: '/dark',
+      path: 'dark',
       name: 'layouts/dark',
-      component: LayoutDark
+      component: Dark
     },
     {
-      path: '/google-contacts',
+      path: 'google-contacts',
       name: 'layouts/google-contacts',
-      component: LayoutGoogleContacts
+      component: GoogleContacts
     },
     {
-      path: '/google-keep',
+      path: 'google-keep',
       name: 'layouts/google-keep',
-      component: LayoutGoogleKeep
+      component: GoogleKeep
     },
     {
-      path: '/google-youtube',
+      path: 'google-youtube',
       name: 'layouts/google-youtube',
-      component: LayoutGoogleYoutube
+      component: GoogleYoutube
     },
     {
-      path: '/sabdbox',
+      path: 'sabdbox',
       name: 'layouts/sandbox',
-      component: LayoutSandbox
+      component: Sandbox
     }
   ]
 }

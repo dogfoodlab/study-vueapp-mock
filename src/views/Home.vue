@@ -36,11 +36,15 @@
             </li>
           </ul>
         </li>
-        <li>
-          <router-link :to="{name:'i18n'}">i18n</router-link>
-        </li>
-        <li>
-          <router-link :to="{name:'vuetify'}">Vuetify</router-link>
+        <li>Plugins
+          <ul>
+            <li>
+              <router-link :to="{name:'plugins/i18n'}">i18n</router-link>
+            </li>
+            <li>
+              <router-link :to="{name:'plugins/vuetify'}">Vuetify</router-link>
+            </li>
+          </ul>
         </li>
         <li>
           <router-link :to="{name:'about'}">About</router-link>
