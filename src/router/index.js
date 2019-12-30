@@ -11,6 +11,7 @@ import LayoutGoogleContacts from '@/views/layouts/GoogleContacts'
 import LayoutGoogleKeep from '@/views/layouts/GoogleKeep'
 import LayoutGoogleYoutube from '@/views/layouts/GoogleYoutube'
 import LayoutSandbox from '@/views/layouts/Sandbox'
+import I18n from '@/views/I18n'
 import Vuetify from '@/views/Vuetify'
 
 Vue.use(VueRouter)
@@ -73,6 +74,11 @@ export default new VueRouter({
       path: '/layouts/sabdbox',
       name: 'layouts/sandbox',
       component: LayoutSandbox
+    },
+    {
+      path: '/i18n',
+      name: 'i18n',
+      component: I18n
     },
     {
       path: '/vuetify',
