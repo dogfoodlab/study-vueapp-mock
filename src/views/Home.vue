@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-content>
+
       <h1>Home</h1>
 
       <ul>
@@ -54,6 +55,23 @@
           </ul>
         </li>
         <li>
+          <router-link :to="{ name: 'amcharts' }">amCharts</router-link>
+          <ul>
+            <li>
+              <router-link :to="{ name: 'amcharts/line-graph' }">Line Graph</router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'amcharts/stacked-area' }">Stacked Area</router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'amcharts/simple-column-chart' }">Simple Column Chart</router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'amcharts/simple-pie-chart' }">Simple Pie Chart</router-link>
+            </li>
+          </ul>
+        </li>
+        <li>
           Plugins
           <ul>
             <li>
@@ -68,6 +86,7 @@
           <router-link :to="{ name: 'about' }">About</router-link>
         </li>
       </ul>
+
     </v-content>
   </v-container>
 </template>
