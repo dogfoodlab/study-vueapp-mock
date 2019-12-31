@@ -94,7 +94,22 @@
 
         <v-divider />
 
+        <v-list-item
+          href="https://github.com/highcharts/highcharts/blob/master/license.txt"
+          target="_blank"
+        >
+          <v-list-item-action>
+            <v-icon>mdi-exclamation</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>See Highcharts license.</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-divider />
+
       </v-list>
+
     </v-navigation-drawer>
 
     <v-content>
