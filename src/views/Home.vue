@@ -69,6 +69,15 @@
             <li>
               <router-link :to="{ name: 'amcharts/simple-pie-chart' }">Simple Pie Chart</router-link>
             </li>
+            <li>
+              <router-link :to="{ name: 'amcharts/vertically-stacked-axes-chart' }">Vertically stacked axes chart</router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'amcharts/map-bubbles' }">Map with Bubbles</router-link>
+            </li>
+            <li>
+              <router-link :to="{ name: 'amcharts/transport-metro-map' }">Transport metro map</router-link>
+            </li>
           </ul>
         </li>
         <li>

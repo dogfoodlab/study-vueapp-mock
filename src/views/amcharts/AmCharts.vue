@@ -78,6 +78,42 @@
           </v-list-item-content>
         </v-list-item>
 
+        <v-list-item
+          :to="{ name: 'amcharts/vertically-stacked-axes-chart' }"
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>mdi-finance</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Vertically stacked axes chart</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item
+          :to="{ name: 'amcharts/map-bubbles' }"
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>mdi-map</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Map with Bubbles</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item
+          :to="{ name: 'amcharts/transport-metro-map' }"
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>mdi-transit-connection-variant</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Transport metro map</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
         <v-divider />
 
         <v-list-item
