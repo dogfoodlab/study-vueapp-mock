@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '@/views/Home'
 import Layouts from '@/router/layouts'
+import Highcharts from '@/router/highcharts'
 import Plugins from '@/router/plugins'
 
 Vue.use(VueRouter)
@@ -16,6 +17,7 @@ export default new VueRouter({
       component: Home
     },
     { ...Layouts },
+    { ...Highcharts },
     { ...Plugins },
     {
       path: '/about',
