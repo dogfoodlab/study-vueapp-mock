@@ -184,15 +184,18 @@
           Create contact
         </v-card-title>
         <v-container>
-          <v-row>
+          <v-row class="mx-2">
             <v-col
               class="align-center justify-space-between"
               cols="12"
             >
-              <v-row align="center">
+              <v-row
+                align="center"
+                class="mr-0"
+              >
                 <v-avatar
                   size="40px"
-                  class="mr-4"
+                  class="mx-2"
                 >
                   <img
                     src="//ssl.gstatic.com/s2/oz/images/sge/grey_silhouette.png"
@@ -204,7 +207,7 @@
             </v-col>
             <v-col cols="6">
               <v-text-field
-                prepend-icon="business"
+                prepend-icon="mdi-domain"
                 placeholder="Company"
               ></v-text-field>
             </v-col>
@@ -213,20 +216,20 @@
             </v-col>
             <v-col cols="12">
               <v-text-field
-                prepend-icon="mail"
+                prepend-icon="mdi-mail"
                 placeholder="Email"
               ></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field
                 type="tel"
-                prepend-icon="phone"
+                prepend-icon="mdi-phone"
                 placeholder="(000) 000 - 0000"
               ></v-text-field>
             </v-col>
             <v-col cols="12">
               <v-text-field
-                prepend-icon="notes"
+                prepend-icon="mdi-text"
                 placeholder="Notes"
               ></v-text-field>
             </v-col>
