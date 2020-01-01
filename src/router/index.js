@@ -4,6 +4,7 @@ import Home from '@/views/Home'
 import Layouts from '@/router/layouts'
 import Highcharts from '@/router/highcharts'
 import AmCharts from '@/router/amcharts'
+import Misc from '@/router/misc'
 import Plugins from '@/router/plugins'
 
 Vue.use(VueRouter)
@@ -20,6 +21,7 @@ export default new VueRouter({
     { ...Layouts },
     { ...Highcharts },
     { ...AmCharts },
+    { ...Misc },
     { ...Plugins },
     {
       path: '/about',

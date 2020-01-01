@@ -81,6 +81,9 @@
           </ul>
         </li>
         <li>
+          <router-link :to="{ name: 'misc' }">Miscellaneous</router-link>
+        </li>
+        <li>
           Plugins
           <ul>
             <li>
