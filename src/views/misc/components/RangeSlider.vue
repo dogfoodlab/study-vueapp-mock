@@ -9,7 +9,7 @@ import $ from 'jquery'
 import 'ion-rangeslider'
 import 'ion-rangeslider/css/ion.rangeSlider.min.css'
 
-const config = {
+const config = Object.freeze({
   skin: 'flat',
   type: 'single',
 
@@ -70,7 +70,7 @@ const config = {
   onChange: null,
   onFinish: null,
   onUpdate: null
-}
+})
 
 export default {
   watch: {
@@ -224,16 +224,18 @@ export default {
         this.$emit('update', data)
       }
     })
-    this.slider.component = $(this.$refs.slider).data('ionRangeSlider')
+    this.F.slider.component = $(this.$refs.slider).data('ionRangeSlider')
   },
   beforeDestroy () {
-    if (this.slider.component) {
-      this.slider.component.destroy()
+    if (this.F.slider.component) {
+      this.F.slider.component.destroy()
     }
   },
   data () {
     return {
-      slider: Object.seal({ component: undefined })
+      F: Object.freeze({
+        slider: { component: undefined }
+      })
     }
   },
   computed: {
@@ -249,7 +251,7 @@ export default {
   },
   methods: {
     update (prop, val) {
-      this.slider.component.update({ [prop]: val })
+      this.F.slider.component.update({ [prop]: val })
     }
   }
 }
