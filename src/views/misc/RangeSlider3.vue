@@ -102,8 +102,9 @@ export default {
 
     // Create value pointer
     const circle = imageTemplate.createChild(am4core.Circle)
-    circle.fillOpacity = 0.7
+    circle.fillOpacity = 0.3
     // circle.propertyFields.fill = 'color'
+    circle.fill = am4core.color('red')
     circle.tooltipText = '{time}\n{place}\nMagnitude:{magN}\nDepth:{depthN}'
 
     imageSeries.heatRules.push({
@@ -129,6 +130,7 @@ export default {
         record.longitudeN = Number.parseFloat(record.longitude)
         record.magN = Number.parseFloat(record.mag)
         record.depthN = Number.parseFloat(record.depth)
+        // record.color = chart.colors.getIndex(Number.parseInt(record.magN))
         return record
       }
     })
