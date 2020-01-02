@@ -231,11 +231,9 @@ export default {
       this.F.slider.component.destroy()
     }
   },
-  data () {
-    return {
-      F: Object.freeze({
-        slider: { component: undefined }
-      })
+  methods: {
+    update (prop, val) {
+      this.F.slider.component.update({ [prop]: val })
     }
   },
   computed: {
@@ -249,9 +247,11 @@ export default {
       return this.width + 'px'
     }
   },
-  methods: {
-    update (prop, val) {
-      this.F.slider.component.update({ [prop]: val })
+  data () {
+    return {
+      F: Object.freeze({
+        slider: { component: undefined }
+      })
     }
   }
 }
