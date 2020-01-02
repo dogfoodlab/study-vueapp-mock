@@ -210,16 +210,18 @@ export default {
     range2.label.verticalCenter = 'bottom'
 
     // Set property.
-    this.amcharts.chart = chart
+    this.F.amcharts.chart = chart
   },
   beforeDestroy () {
-    if (this.amcharts.chart) {
-      this.amcharts.chart.dispose()
+    if (this.F.amcharts.chart) {
+      this.F.amcharts.chart.dispose()
     }
   },
   data () {
     return {
-      amcharts: Object.seal({ chart: undefined })
+      F: Object.freeze({
+        amcharts: { chart: undefined }
+      })
     }
   }
 }

@@ -954,16 +954,18 @@ export default {
     bg.href = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/hk.png'
 
     // Set property.
-    this.amcharts.chart = chart
+    this.F.amcharts.chart = chart
   },
-  beforeDestroy  () {
-    if (this.amcharts.chart) {
-      this.amcharts.chart.dispose()
+  beforeDestroy () {
+    if (this.F.amcharts.chart) {
+      this.F.amcharts.chart.dispose()
     }
   },
-  data  () {
+  data () {
     return {
-      amcharts: Object.seal({ chart: undefined })
+      F: Object.freeze({
+        amcharts: { chart: undefined }
+      })
     }
   }
 }
