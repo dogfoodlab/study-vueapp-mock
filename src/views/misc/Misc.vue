@@ -1,5 +1,5 @@
 <template>
-  <v-container>
+  <v-container fluid>
 
     <v-app-bar
       app
@@ -36,6 +36,7 @@
         >
           <v-list-item-action>
             <v-icon>mdi-ray-start-end</v-icon>
+            <!-- <v-icon>mdi-arrow-left-right</v-icon> -->
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Range slider 1</v-list-item-title>
@@ -47,10 +48,22 @@
           exact
         >
           <v-list-item-action>
-            <v-icon>mdi-arrow-left-right</v-icon>
+            <v-icon>mdi-ray-start-end</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Range slider 2</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item
+          :to="{ name: 'misc/range-slider-3' }"
+          exact
+        >
+          <v-list-item-action>
+            <v-icon>mdi-ray-start-end</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Range slider 3</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
 
