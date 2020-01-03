@@ -13,7 +13,7 @@
       :max="slider.max"
       :from="slider.from"
       :to="slider.to"
-      :prettify="valueOfDate => sliderDateFormat(valueOfDate)"
+      :prettify="sliderDateFormat"
       @change="onChangeRangeSlider"
       @update="onUpdateRangeSlider"
       @finish="onFinishRangeSlider"
