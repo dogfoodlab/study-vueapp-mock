@@ -19,7 +19,7 @@
             color="grey"
             @click="togglePlaySlider"
           >
-            <v-icon small>{{ status.isPlaying ? status.icons.pause : status.icons.play }}</v-icon>
+            <v-icon small>{{ internal.isPlaying ? internal.icons.pause : internal.icons.play }}</v-icon>
           </v-btn>
         </v-col>
         <v-col cols="3">
@@ -28,13 +28,13 @@
             dense
             color="grey lighten-1"
             track-color="grey lighten-1"
-            :min="status.playSpeedMin"
-            :max="status.playSpeedMax"
-            v-model="status.playSpeed"
+            :min="internal.playSpeedMin"
+            :max="internal.playSpeedMax"
+            v-model="internal.playSpeed"
           ></v-slider>
         </v-col>
       </v-row>
-      {{ status }}
+      {{ internal }}
     </v-container>
   </div>
 </template>
@@ -118,10 +118,10 @@ const config = Object.freeze({
 export default {
   watch: {
     width (val) { this.$el.style.width = this.computedWidth },
-    play_step (val) { this.status.playStep = val },
-    play_wait_min (val) { this.status.playSpeedMax = -1 * val },
-    play_wait_max (val) { this.status.playSpeedMin = -1 * val },
-    play_wait (val) { this.status.playSpeed = -1 * val },
+    play_step (val) { this.internal.playStep = val },
+    play_wait_min (val) { this.internal.playSpeedMax = -1 * val },
+    play_wait_max (val) { this.internal.playSpeedMin = -1 * val },
+    play_wait (val) { this.internal.playSpeed = -1 * val },
     //
     skin (val) { this.updateSlider('skin', val) },
     type (val) { this.updateSlider('type', val) },
@@ -260,29 +260,29 @@ export default {
       onStart: (data) => {
         delete data.input
         delete data.slider
-        this.updateStatus(data)
+        this.updateInternal(data)
         this.$emit('start', data)
         // console.log('onStart')
       },
       onChange: (data) => {
-        this.status.isPlaying = false
+        this.internal.isPlaying = false
         delete data.input
         delete data.slider
-        this.updateStatus(data)
+        this.updateInternal(data)
         this.$emit('change', data)
         // console.log('onChange')
       },
       onFinish: (data) => {
         delete data.input
         delete data.slider
-        this.updateStatus(data)
+        this.updateInternal(data)
         this.$emit('finish', data)
         // console.log('onFinish')
       },
       onUpdate: (data) => {
         delete data.input
         delete data.slider
-        this.updateStatus(data)
+        this.updateInternal(data)
         this.$emit('update', data)
         // console.log('onUpdate')
       }
@@ -298,59 +298,59 @@ export default {
     updateSlider (prop, val) {
       this.F.slider.component.update({ [prop]: val })
     },
-    updateStatus (data) {
-      this.status.min = data.min
-      this.status.max = data.max
-      this.status.from = data.from
-      this.status.to = data.to
+    updateInternal (data) {
+      this.internal.min = data.min
+      this.internal.max = data.max
+      this.internal.from = data.from
+      this.internal.to = data.to
     },
     togglePlaySlider () {
-      if (this.status.isPlaying === true) {
-        this.status.isPlaying = false
+      if (this.internal.isPlaying === true) {
+        this.internal.isPlaying = false
         return
       }
 
       const data = this.F.slider.component.result
 
-      this.updateStatus({
+      this.updateInternal({
         min: data.min,
         max: data.max,
         from: data.from,
         to: data.to
       })
 
-      this.status.isPlaying = true
+      this.internal.isPlaying = true
 
       this.playSlider()
     },
     playSlider () {
       setTimeout(() => {
-        if (this.status.isPlaying === false) {
+        if (this.internal.isPlaying === false) {
           return
         }
 
-        let newFrom = this.status.from + this.status.playStep
-        let newTo = this.status.to + this.status.playStep
+        let newFrom = this.internal.from + this.internal.playStep
+        let newTo = this.internal.to + this.internal.playStep
 
-        if (this.status.max <= newTo) {
+        if (this.internal.max <= newTo) {
           const diff = newTo - newFrom
-          newTo = this.status.max
+          newTo = this.internal.max
           newFrom = newTo - diff
-          this.status.isPlaying = false
+          this.internal.isPlaying = false
         }
 
-        this.status.from = newFrom
-        this.status.to = newTo
+        this.internal.from = newFrom
+        this.internal.to = newTo
 
         this.F.slider.component.update({
-          from: this.status.from,
-          to: this.status.to
+          from: this.internal.from,
+          to: this.internal.to
         })
 
         // console.log('playSlider')
 
         this.playSlider()
-      }, -1 * this.status.playSpeed)
+      }, -1 * this.internal.playSpeed)
     }
   },
   computed: {
@@ -371,7 +371,7 @@ export default {
           component: undefined
         }
       }),
-      status: {
+      internal: {
         min: this.min,
         max: this.max,
         from: this.from,
