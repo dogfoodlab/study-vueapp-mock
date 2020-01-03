@@ -5,6 +5,11 @@
   >
 
     <range-slider
+      :show_control="true"
+      :play_step="3600 * 4 * 1000"
+      :play_wait_min="500"
+      :play_wait_max="2000"
+      :play_wait="1000"
       skin="flat"
       type="double"
       :grid="true"
@@ -13,7 +18,8 @@
       :max="slider.max"
       :from="slider.from"
       :to="slider.to"
-      :prettify="valueOfDate => sliderDateFormat(valueOfDate)"
+      :step="3600 * 4 * 1000"
+      :prettify="sliderDateFormat"
       @change="onChangeRangeSlider"
       @update="onUpdateRangeSlider"
       @finish="onFinishRangeSlider"
@@ -143,10 +149,11 @@ export default {
     const minTime = Enumerable.from(this.F.data.source).min(x => x.time)
     const maxTime = Enumerable.from(this.F.data.source).max(x => x.time)
 
-    this.slider.min = moment(minTime).valueOf()
-    this.slider.max = moment(maxTime).valueOf()
-    this.slider.from = moment(minTime).valueOf()
-    this.slider.to = moment(maxTime).valueOf()
+    this.slider.min = moment(minTime).tz('UTC').hours(0).minutes(0).seconds(0).valueOf()
+    this.slider.max = moment(maxTime).tz('UTC').hours(0).minutes(0).seconds(0).add(1, 'days').valueOf()
+    this.slider.from = this.slider.min
+    // this.slider.to = moment(maxTime).valueOf()
+    this.slider.to = moment(this.slider.from).tz('UTC').add(1, 'days').valueOf()
 
     // Initial data
     const items =
@@ -157,8 +164,8 @@ export default {
           .toArray()
 
     // Bind data
-    this.datatable.items = items
     this.F.amcharts.imageSeries.data = items
+    this.datatable.items = items
   },
   beforeDestroy () {
     if (this.F.amcharts.chart) {
@@ -172,12 +179,8 @@ export default {
       return moment(valueOfDate).tz('UTC').format()
     },
     onChangeRangeSlider (slider) {
-      // console.log(slider)
     },
     onUpdateRangeSlider (slider) {
-      // console.log(slider)
-    },
-    onFinishRangeSlider (slider) {
       // Conditions
       const fromTime = moment(slider.from).tz('UTC').format()
       const toTime = moment(slider.to).tz('UTC').format()
@@ -191,8 +194,26 @@ export default {
           .toArray()
 
       // Bind data
-      this.datatable.items = items
       this.F.amcharts.imageSeries.data = items
+      this.datatable.items = items
+    },
+    onFinishRangeSlider (slider) {
+      // console.log(slider)
+      // Conditions
+      const fromTime = moment(slider.from).tz('UTC').format()
+      const toTime = moment(slider.to).tz('UTC').format()
+
+      // Filter items
+      const items =
+        Enumerable
+          .from(this.F.data.source)
+          .where(x => fromTime <= x.time)
+          .where(x => x.time <= toTime)
+          .toArray()
+
+      // Bind data
+      this.F.amcharts.imageSeries.data = items
+      this.datatable.items = items
     }
   },
   data () {
@@ -214,7 +235,7 @@ export default {
           { text: 'longitude', value: 'longitude' },
           { text: 'depth', value: 'depth' },
           { text: 'mag', value: 'mag' },
-          { text: 'place', value: 'place' }
+          { text: 'place', value: 'place', width: '350' }
         ],
         items: [],
         itemsPerPage: 5
