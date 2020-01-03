@@ -28,13 +28,17 @@
             dense
             color="grey lighten-1"
             track-color="grey lighten-1"
+            hide-details
             :min="internal.playSpeedMin"
             :max="internal.playSpeedMax"
             v-model="internal.playSpeed"
           ></v-slider>
         </v-col>
       </v-row>
-      {{ internal }}
+      <div v-show="debug">
+        {{ internal }}
+        {{ model }}
+      </div>
     </v-container>
   </div>
 </template>
@@ -117,6 +121,22 @@ const config = Object.freeze({
 
 export default {
   watch: {
+    'value.min' (val) {
+      // console.log('watch min')
+      this.updateSlider('min', Number(val))
+    },
+    'value.max' (val) {
+      // console.log('watch max')
+      this.updateSlider('max', Number(val))
+    },
+    'value.from' (val) {
+      // console.log('watch from')
+      this.updateSlider('from', Number(val))
+    },
+    'value.to' (val) {
+      // console.log('watch to')
+      this.updateSlider('to', Number(val))
+    },
     width (val) { this.$el.style.width = this.computedWidth },
     play_step (val) { this.internal.playStep = val },
     play_wait_min (val) { this.internal.playSpeedMax = -1 * val },
@@ -125,10 +145,10 @@ export default {
     //
     skin (val) { this.updateSlider('skin', val) },
     type (val) { this.updateSlider('type', val) },
-    min (val) { this.updateSlider('min', val) },
-    max (val) { this.updateSlider('max', val) },
-    from (val) { this.updateSlider('from', val) },
-    to (val) { this.updateSlider('to', val) },
+    min (val) { this.updateSlider('min', Number(val)) },
+    max (val) { this.updateSlider('max', Number(val)) },
+    from (val) { this.updateSlider('from', Number(val)) },
+    to (val) { this.updateSlider('to', Number(val)) },
     step (val) { this.updateSlider('step', val) },
     min_interval (val) { this.updateSlider('min_interval', val) },
     max_interval (val) { this.updateSlider('max_interval', val) },
@@ -165,6 +185,9 @@ export default {
     scope (val) { this.updateSlider('scope', val) }
   },
   props: {
+    debug: { type: Boolean, default: false },
+    //
+    value: { type: Object, default: () => {} },
     width: { type: String, default: undefined },
     show_control: { type: Boolean, default: false },
     play_step: { type: Number, default: 1 },
@@ -174,10 +197,10 @@ export default {
     //
     skin: { type: String, default: config['skin'] },
     type: { type: String, default: config['type'] },
-    min: { type: Number, default: config['min'] },
-    max: { type: Number, default: config['max'] },
-    from: { type: Number, default: config['from'] },
-    to: { type: Number, default: config['to'] },
+    min: { type: [Number, String], default: config['min'] },
+    max: { type: [Number, String], default: config['max'] },
+    from: { type: [Number, String], default: config['from'] },
+    to: { type: [Number, String], default: config['to'] },
     step: { type: Number, default: config['step'] },
     min_interval: { type: Number, default: config['min_interval'] },
     max_interval: { type: Number, default: config['max_interval'] },
@@ -219,10 +242,12 @@ export default {
     $(this.$refs.slider).ionRangeSlider({
       skin: this.skin,
       type: this.type,
-      min: this.min,
-      max: this.max,
-      from: this.from,
-      to: this.to,
+
+      min: this.model.min,
+      max: this.model.max,
+      from: this.model.from,
+      to: this.model.to,
+
       step: this.step,
       min_interval: this.min_interval,
       max_interval: this.max_interval,
@@ -260,31 +285,29 @@ export default {
       onStart: (data) => {
         delete data.input
         delete data.slider
-        this.updateInternal(data)
-        this.$emit('start', data)
         // console.log('onStart')
+        this.updateModel(data)
       },
       onChange: (data) => {
         this.internal.isPlaying = false
         delete data.input
         delete data.slider
-        this.updateInternal(data)
-        this.$emit('change', data)
-        // console.log('onChange')
+        // console.log('onChange', data)
+        this.updateModel(data)
       },
       onFinish: (data) => {
         delete data.input
         delete data.slider
-        this.updateInternal(data)
+        // console.log('onFinish', data)
+        this.emitModel(data)
         this.$emit('finish', data)
-        // console.log('onFinish')
       },
       onUpdate: (data) => {
         delete data.input
         delete data.slider
-        this.updateInternal(data)
+        // console.log('onUpdate', data)
+        this.emitModel(data)
         this.$emit('update', data)
-        // console.log('onUpdate')
       }
     })
     this.F.slider.component = $(this.$refs.slider).data('ionRangeSlider')
@@ -298,11 +321,20 @@ export default {
     updateSlider (prop, val) {
       this.F.slider.component.update({ [prop]: val })
     },
-    updateInternal (data) {
-      this.internal.min = data.min
-      this.internal.max = data.max
-      this.internal.from = data.from
-      this.internal.to = data.to
+    updateModel (data) {
+      this.model.min = data.min
+      this.model.max = data.max
+      this.model.from = data.from
+      this.model.to = data.to
+    },
+    emitModel (data) {
+      this.updateModel(data)
+      this.$emit('input', {
+        min: this.model.min,
+        max: this.model.max,
+        from: this.model.from,
+        to: this.model.to
+      })
     },
     togglePlaySlider () {
       if (this.internal.isPlaying === true) {
@@ -312,7 +344,7 @@ export default {
 
       const data = this.F.slider.component.result
 
-      this.updateInternal({
+      this.updateModel({
         min: data.min,
         max: data.max,
         from: data.from,
@@ -329,22 +361,32 @@ export default {
           return
         }
 
-        let newFrom = this.internal.from + this.internal.playStep
-        let newTo = this.internal.to + this.internal.playStep
+        let newFrom = this.model.from
+        let newTo = this.model.to
 
-        if (this.internal.max <= newTo) {
-          const diff = newTo - newFrom
-          newTo = this.internal.max
-          newFrom = newTo - diff
-          this.internal.isPlaying = false
+        if (this.type === 'double') {
+          newFrom = this.model.from + this.internal.playStep
+          newTo = this.model.to + this.internal.playStep
+          if (this.model.max <= newTo) {
+            const diff = newTo - newFrom
+            newTo = this.model.max
+            newFrom = newTo - diff
+            this.internal.isPlaying = false
+          }
+        } else {
+          newFrom = this.model.from + this.internal.playStep
+          if (this.model.max <= newFrom) {
+            newFrom = this.model.max
+            this.internal.isPlaying = false
+          }
         }
 
-        this.internal.from = newFrom
-        this.internal.to = newTo
+        this.model.from = newFrom
+        this.model.to = newTo
 
         this.F.slider.component.update({
-          from: this.internal.from,
-          to: this.internal.to
+          from: this.model.from,
+          to: this.model.to
         })
 
         // console.log('playSlider')
@@ -355,27 +397,23 @@ export default {
   },
   computed: {
     computedWidth () {
-      if (typeof this.width === 'undefined') {
-        return this.width
-      }
-      if (Number.isNaN(Number(this.width))) {
-        return this.width
-      }
+      if (typeof this.width === 'undefined') { return this.width }
+      if (Number.isNaN(Number(this.width))) { return this.width }
       return this.width + 'px'
     }
   },
   data () {
     return {
       F: Object.freeze({
-        slider: {
-          component: undefined
-        }
+        slider: { component: undefined }
       }),
+      model: {
+        min: this.value ? this.value.min : this.min,
+        max: this.value ? this.value.max : this.max,
+        from: this.value ? this.value.from : this.from,
+        to: this.value ? this.value.to : this.to
+      },
       internal: {
-        min: this.min,
-        max: this.max,
-        from: this.from,
-        to: this.to,
         isPlaying: false,
         playStep: this.play_step,
         playSpeedMin: -1 * this.play_wait_max,

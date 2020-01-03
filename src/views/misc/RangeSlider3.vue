@@ -20,12 +20,9 @@
       :to="slider.to"
       :step="3600 * 4 * 1000"
       :prettify="sliderDateFormat"
-      @change="onChangeRangeSlider"
       @update="onUpdateRangeSlider"
-      @finish="onFinishRangeSlider"
+      @finish="onUpdateRangeSlider"
     />
-
-    <br />
 
     <div
       ref="chart"
@@ -178,30 +175,10 @@ export default {
     sliderDateFormat (valueOfDate) {
       return moment(valueOfDate).tz('UTC').format()
     },
-    onChangeRangeSlider (slider) {
-    },
-    onUpdateRangeSlider (slider) {
+    onUpdateRangeSlider (data) {
       // Conditions
-      const fromTime = moment(slider.from).tz('UTC').format()
-      const toTime = moment(slider.to).tz('UTC').format()
-
-      // Filter items
-      const items =
-        Enumerable
-          .from(this.F.data.source)
-          .where(x => fromTime <= x.time)
-          .where(x => x.time <= toTime)
-          .toArray()
-
-      // Bind data
-      this.F.amcharts.imageSeries.data = items
-      this.datatable.items = items
-    },
-    onFinishRangeSlider (slider) {
-      // console.log(slider)
-      // Conditions
-      const fromTime = moment(slider.from).tz('UTC').format()
-      const toTime = moment(slider.to).tz('UTC').format()
+      const fromTime = moment(data.from).tz('UTC').format()
+      const toTime = moment(data.to).tz('UTC').format()
 
       // Filter items
       const items =

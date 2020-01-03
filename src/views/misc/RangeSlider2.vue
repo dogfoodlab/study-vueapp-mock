@@ -14,8 +14,6 @@
       :from="slider.from"
       :to="slider.to"
       :prettify="sliderDateFormat"
-      @change="onChangeRangeSlider"
-      @update="onUpdateRangeSlider"
       @finish="onFinishRangeSlider"
     />
 
@@ -79,12 +77,6 @@ export default {
   methods: {
     sliderDateFormat (valueOfDate) {
       return moment(valueOfDate).tz('UTC').format()
-    },
-    onChangeRangeSlider (slider) {
-      // console.log(slider)
-    },
-    onUpdateRangeSlider (slider) {
-      // console.log(slider)
     },
     onFinishRangeSlider (slider) {
       const fromTime = moment(slider.from).tz('UTC').format()
