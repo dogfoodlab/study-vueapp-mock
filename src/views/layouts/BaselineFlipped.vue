@@ -1,11 +1,6 @@
 <template>
   <v-app id="flipped">
-
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      right
-    >
+    <v-navigation-drawer v-model="drawer" app right>
       <v-list dense>
         <v-list-item @click.stop>
           <v-list-item-action>
@@ -26,35 +21,19 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      color="cyan"
-      dark
-    >
+    <v-app-bar app color="cyan" dark>
       <div class="flex-grow-1"></div>
       <v-toolbar-title>Application</v-toolbar-title>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
     </v-app-bar>
 
-    <v-content>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          justify="center"
-          align="center"
-        >
+    <v-main>
+      <v-container class="fill-height" fluid>
+        <v-row justify="center" align="center">
           <v-col class="text-center">
             <v-tooltip left>
               <template v-slot:activator="{ on }">
-                <v-btn
-                  :href="source"
-                  icon
-                  large
-                  target="_blank"
-                  v-on="on"
-                >
+                <v-btn :href="source" icon large target="_blank" v-on="on">
                   <v-icon large>mdi-code-tags</v-icon>
                 </v-btn>
               </template>
@@ -78,16 +57,12 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+    </v-main>
 
-    <v-footer
-      color="cyan"
-      app
-    >
+    <v-footer color="cyan" app>
       <div class="flex-grow-1"></div>
       <span class="white--text">&copy; 2019</span>
     </v-footer>
-
   </v-app>
 </template>
 

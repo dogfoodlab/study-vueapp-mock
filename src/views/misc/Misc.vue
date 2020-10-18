@@ -1,27 +1,13 @@
 <template>
   <v-container fluid>
-
-    <v-app-bar
-      app
-      clipped-left
-      color="indigo"
-      dark
-    >
+    <v-app-bar app clipped-left color="indigo" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Miscellaneous</v-toolbar-title>
     </v-app-bar>
 
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-    >
+    <v-navigation-drawer v-model="drawer" app clipped>
       <v-list dense>
-
-        <v-list-item
-          :to="{ name: 'misc' }"
-          exact
-        >
+        <v-list-item :to="{ name: 'misc' }" exact>
           <v-list-item-action>
             <v-icon>mdi-home</v-icon>
           </v-list-item-action>
@@ -30,10 +16,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item
-          :to="{ name: 'misc/range-slider-1' }"
-          exact
-        >
+        <v-list-item :to="{ name: 'misc/range-slider-1' }" exact>
           <v-list-item-action>
             <v-icon>mdi-ray-start-end</v-icon>
             <!-- <v-icon>mdi-arrow-left-right</v-icon> -->
@@ -43,10 +26,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item
-          :to="{ name: 'misc/range-slider-2' }"
-          exact
-        >
+        <v-list-item :to="{ name: 'misc/range-slider-2' }" exact>
           <v-list-item-action>
             <v-icon>mdi-ray-start-end</v-icon>
           </v-list-item-action>
@@ -55,10 +35,7 @@
           </v-list-item-content>
         </v-list-item>
 
-        <v-list-item
-          :to="{ name: 'misc/range-slider-3' }"
-          exact
-        >
+        <v-list-item :to="{ name: 'misc/range-slider-3' }" exact>
           <v-list-item-action>
             <v-icon>mdi-ray-start-end</v-icon>
           </v-list-item-action>
@@ -69,10 +46,7 @@
 
         <v-divider />
 
-        <v-list-item
-          :to="{ name: 'home' }"
-          exact
-        >
+        <v-list-item :to="{ name: 'home' }" exact>
           <v-list-item-action>
             <v-icon>mdi-exit-to-app</v-icon>
           </v-list-item-action>
@@ -82,21 +56,16 @@
         </v-list-item>
 
         <v-divider />
-
       </v-list>
     </v-navigation-drawer>
 
-    <v-content>
+    <v-main>
       <router-view />
-    </v-content>
+    </v-main>
 
-    <v-footer
-      color="indigo"
-      app
-    >
+    <v-footer color="indigo" app>
       <span class="white--text">&copy; 2019</span>
     </v-footer>
-
   </v-container>
 </template>
 
@@ -105,7 +74,7 @@ export default {
   props: {
     source: String
   },
-  data () {
+  data() {
     return {
       drawer: null
     }

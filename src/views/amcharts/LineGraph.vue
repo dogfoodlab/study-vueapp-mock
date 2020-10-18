@@ -1,9 +1,6 @@
 <template>
   <v-container>
-    <div
-      ref="chart"
-      style="width:100%;height:500px;"
-    />
+    <div ref="chart" style="width: 100%; height: 500px" />
   </v-container>
 </template>
 
@@ -14,7 +11,7 @@ import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 am4core.useTheme(am4themesAnimated)
 
 export default {
-  mounted () {
+  mounted() {
     // Create chart instance
     const chart = am4core.create(this.$refs.chart, am4charts.XYChart)
 
@@ -54,12 +51,12 @@ export default {
     // Set property.
     this.F.amcharts.chart = chart
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.F.amcharts.chart) {
       this.F.amcharts.chart.dispose()
     }
   },
-  data () {
+  data() {
     return {
       F: Object.freeze({
         amcharts: { chart: undefined }

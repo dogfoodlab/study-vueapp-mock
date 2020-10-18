@@ -4,20 +4,13 @@ module.exports = {
   configureWebpack: {
     devtool: isDev ? 'source-map' : false
   },
-
-  publicPath: '/',
-
+  publicPath: './',
   productionSourceMap: false,
-  /*
-  transpileDependencies: [
-    'vuetify'
-  ]
-  */
-
+  transpileDependencies: ['vuetify'],
   pluginOptions: {
     i18n: {
-      // locale: 'en',
-      // fallbackLocale: 'en',
+      locale: 'en',
+      fallbackLocale: 'en',
       localeDir: 'locales',
       enableInSFC: false
     }

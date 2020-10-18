@@ -1,25 +1,15 @@
 <template>
   <div>
-    <v-container
-      ma-0
-      pa-0
-    >
+    <v-container ma-0 pa-0>
       <input ref="slider" />
     </v-container>
-    <v-container
-      ma-0
-      pa-0
-      v-show="show_control"
-    >
+    <v-container ma-0 pa-0 v-show="show_control">
       <v-row>
         <v-col cols="auto">
-          <v-btn
-            outlined
-            small
-            color="grey"
-            @click="togglePlaySlider"
-          >
-            <v-icon small>{{ internal.isPlaying ? internal.icons.pause : internal.icons.play }}</v-icon>
+          <v-btn outlined small color="grey" @click="togglePlaySlider">
+            <v-icon small>{{
+              internal.isPlaying ? internal.icons.pause : internal.icons.play
+            }}</v-icon>
           </v-btn>
         </v-col>
         <v-col cols="3">
@@ -121,68 +111,156 @@ const config = Object.freeze({
 
 export default {
   watch: {
-    'value.min' (val) {
+    'value.min'(val) {
       // console.log('watch min')
       this.updateSlider('min', Number(val))
     },
-    'value.max' (val) {
+    'value.max'(val) {
       // console.log('watch max')
       this.updateSlider('max', Number(val))
     },
-    'value.from' (val) {
+    'value.from'(val) {
       // console.log('watch from')
       this.updateSlider('from', Number(val))
     },
-    'value.to' (val) {
+    'value.to'(val) {
       // console.log('watch to')
       this.updateSlider('to', Number(val))
     },
-    width (val) { this.$el.style.width = this.computedWidth },
-    play_step (val) { this.internal.playStep = val },
-    play_wait_min (val) { this.internal.playSpeedMax = -1 * val },
-    play_wait_max (val) { this.internal.playSpeedMin = -1 * val },
-    play_wait (val) { this.internal.playSpeed = -1 * val },
+    width(val) {
+      this.$el.style.width = this.computedWidth
+    },
+    play_step(val) {
+      this.internal.playStep = val
+    },
+    play_wait_min(val) {
+      this.internal.playSpeedMax = -1 * val
+    },
+    play_wait_max(val) {
+      this.internal.playSpeedMin = -1 * val
+    },
+    play_wait(val) {
+      this.internal.playSpeed = -1 * val
+    },
     //
-    skin (val) { this.updateSlider('skin', val) },
-    type (val) { this.updateSlider('type', val) },
-    min (val) { this.updateSlider('min', Number(val)) },
-    max (val) { this.updateSlider('max', Number(val)) },
-    from (val) { this.updateSlider('from', Number(val)) },
-    to (val) { this.updateSlider('to', Number(val)) },
-    step (val) { this.updateSlider('step', val) },
-    min_interval (val) { this.updateSlider('min_interval', val) },
-    max_interval (val) { this.updateSlider('max_interval', val) },
-    drag_interval (val) { this.updateSlider('drag_interval', val) },
-    values (val) { this.updateSlider('values', val) },
-    from_fixed (val) { this.updateSlider('from_fixed', val) },
-    from_min (val) { this.updateSlider('from_min', val) },
-    from_max (val) { this.updateSlider('from_max', val) },
-    from_shadow (val) { this.updateSlider('from_shadow', val) },
-    to_fixed (val) { this.updateSlider('to_fixed', val) },
-    to_min (val) { this.updateSlider('to_min', val) },
-    to_max (val) { this.updateSlider('to_max', val) },
-    to_shadow (val) { this.updateSlider('to_shadow', val) },
-    prettify_enabled (val) { this.updateSlider('prettify_enabled', val) },
-    prettify_separator (val) { this.updateSlider('prettify_separator', val) },
+    skin(val) {
+      this.updateSlider('skin', val)
+    },
+    type(val) {
+      this.updateSlider('type', val)
+    },
+    min(val) {
+      this.updateSlider('min', Number(val))
+    },
+    max(val) {
+      this.updateSlider('max', Number(val))
+    },
+    from(val) {
+      this.updateSlider('from', Number(val))
+    },
+    to(val) {
+      this.updateSlider('to', Number(val))
+    },
+    step(val) {
+      this.updateSlider('step', val)
+    },
+    min_interval(val) {
+      this.updateSlider('min_interval', val)
+    },
+    max_interval(val) {
+      this.updateSlider('max_interval', val)
+    },
+    drag_interval(val) {
+      this.updateSlider('drag_interval', val)
+    },
+    values(val) {
+      this.updateSlider('values', val)
+    },
+    from_fixed(val) {
+      this.updateSlider('from_fixed', val)
+    },
+    from_min(val) {
+      this.updateSlider('from_min', val)
+    },
+    from_max(val) {
+      this.updateSlider('from_max', val)
+    },
+    from_shadow(val) {
+      this.updateSlider('from_shadow', val)
+    },
+    to_fixed(val) {
+      this.updateSlider('to_fixed', val)
+    },
+    to_min(val) {
+      this.updateSlider('to_min', val)
+    },
+    to_max(val) {
+      this.updateSlider('to_max', val)
+    },
+    to_shadow(val) {
+      this.updateSlider('to_shadow', val)
+    },
+    prettify_enabled(val) {
+      this.updateSlider('prettify_enabled', val)
+    },
+    prettify_separator(val) {
+      this.updateSlider('prettify_separator', val)
+    },
     // prettify (val) { this.updateSlider('prettify', val) },
-    force_edges (val) { this.updateSlider('force_edges', val) },
-    keyboard (val) { this.updateSlider('keyboard', val) },
-    grid (val) { this.updateSlider('grid', val) },
-    grid_margin (val) { this.updateSlider('grid_margin', val) },
-    grid_num (val) { this.updateSlider('grid_num', val) },
-    grid_snap (val) { this.updateSlider('grid_snap', val) },
-    hide_min_max (val) { this.updateSlider('hide_min_max', val) },
-    hide_from_to (val) { this.updateSlider('hide_from_to', val) },
-    prefix (val) { this.updateSlider('prefix', val) },
-    postfix (val) { this.updateSlider('postfix', val) },
-    max_postfix (val) { this.updateSlider('max_postfix', val) },
-    decorate_both (val) { this.updateSlider('decorate_both', val) },
-    values_separator (val) { this.updateSlider('values_separator', val) },
-    input_values_separator (val) { this.updateSlider('input_values_separator', val) },
-    disable (val) { this.updateSlider('disable', val) },
-    block (val) { this.updateSlider('block', val) },
-    extra_classes (val) { this.updateSlider('extra_classes', val) },
-    scope (val) { this.updateSlider('scope', val) }
+    force_edges(val) {
+      this.updateSlider('force_edges', val)
+    },
+    keyboard(val) {
+      this.updateSlider('keyboard', val)
+    },
+    grid(val) {
+      this.updateSlider('grid', val)
+    },
+    grid_margin(val) {
+      this.updateSlider('grid_margin', val)
+    },
+    grid_num(val) {
+      this.updateSlider('grid_num', val)
+    },
+    grid_snap(val) {
+      this.updateSlider('grid_snap', val)
+    },
+    hide_min_max(val) {
+      this.updateSlider('hide_min_max', val)
+    },
+    hide_from_to(val) {
+      this.updateSlider('hide_from_to', val)
+    },
+    prefix(val) {
+      this.updateSlider('prefix', val)
+    },
+    postfix(val) {
+      this.updateSlider('postfix', val)
+    },
+    max_postfix(val) {
+      this.updateSlider('max_postfix', val)
+    },
+    decorate_both(val) {
+      this.updateSlider('decorate_both', val)
+    },
+    values_separator(val) {
+      this.updateSlider('values_separator', val)
+    },
+    input_values_separator(val) {
+      this.updateSlider('input_values_separator', val)
+    },
+    disable(val) {
+      this.updateSlider('disable', val)
+    },
+    block(val) {
+      this.updateSlider('block', val)
+    },
+    extra_classes(val) {
+      this.updateSlider('extra_classes', val)
+    },
+    scope(val) {
+      this.updateSlider('scope', val)
+    }
   },
   props: {
     debug: { type: Boolean, default: false },
@@ -236,7 +314,7 @@ export default {
     extra_classes: { type: String, default: config['extra_classes'] },
     scope: { type: Object, default: () => config['scope'] }
   },
-  mounted () {
+  mounted() {
     this.$el.style.width = this.computedWidth
 
     $(this.$refs.slider).ionRangeSlider({
@@ -312,22 +390,22 @@ export default {
     })
     this.F.slider.component = $(this.$refs.slider).data('ionRangeSlider')
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.F.slider.component) {
       this.F.slider.component.destroy()
     }
   },
   methods: {
-    updateSlider (prop, val) {
+    updateSlider(prop, val) {
       this.F.slider.component.update({ [prop]: val })
     },
-    updateModel (data) {
+    updateModel(data) {
       this.model.min = data.min
       this.model.max = data.max
       this.model.from = data.from
       this.model.to = data.to
     },
-    emitModel (data) {
+    emitModel(data) {
       this.updateModel(data)
       this.$emit('input', {
         min: this.model.min,
@@ -336,7 +414,7 @@ export default {
         to: this.model.to
       })
     },
-    togglePlaySlider () {
+    togglePlaySlider() {
       if (this.internal.isPlaying === true) {
         this.internal.isPlaying = false
         return
@@ -355,7 +433,7 @@ export default {
 
       this.playSlider()
     },
-    playSlider () {
+    playSlider() {
       setTimeout(() => {
         if (this.internal.isPlaying === false) {
           return
@@ -396,13 +474,17 @@ export default {
     }
   },
   computed: {
-    computedWidth () {
-      if (typeof this.width === 'undefined') { return this.width }
-      if (Number.isNaN(Number(this.width))) { return this.width }
+    computedWidth() {
+      if (typeof this.width === 'undefined') {
+        return this.width
+      }
+      if (Number.isNaN(Number(this.width))) {
+        return this.width
+      }
       return this.width + 'px'
     }
   },
-  data () {
+  data() {
     return {
       F: Object.freeze({
         slider: { component: undefined }

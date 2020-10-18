@@ -1,9 +1,5 @@
 <template>
-  <v-container
-    pl-12
-    pr-12
-  >
-
+  <v-container pl-12 pr-12>
     <range-slider
       :debug="true"
       skin="flat"
@@ -28,28 +24,16 @@
 
     <v-row>
       <v-col>
-        <v-text-field
-          label="min"
-          v-model="slider1Model.min"
-        ></v-text-field>
+        <v-text-field label="min" v-model="slider1Model.min"></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          label="max"
-          v-model="slider1Model.max"
-        ></v-text-field>
+        <v-text-field label="max" v-model="slider1Model.max"></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          label="from"
-          v-model="slider1Model.from"
-        ></v-text-field>
+        <v-text-field label="from" v-model="slider1Model.from"></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          label="to"
-          v-model="slider1Model.to"
-        ></v-text-field>
+        <v-text-field label="to" v-model="slider1Model.to"></v-text-field>
       </v-col>
     </v-row>
 
@@ -70,31 +54,18 @@
 
     <v-row>
       <v-col>
-        <v-text-field
-          label="min"
-          v-model="slider2Model.min"
-        ></v-text-field>
+        <v-text-field label="min" v-model="slider2Model.min"></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          label="max"
-          v-model="slider2Model.max"
-        ></v-text-field>
+        <v-text-field label="max" v-model="slider2Model.max"></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          label="from"
-          v-model="slider2Model.from"
-        ></v-text-field>
+        <v-text-field label="from" v-model="slider2Model.from"></v-text-field>
       </v-col>
       <v-col>
-        <v-text-field
-          label="to"
-          v-model="slider2Model.to"
-        ></v-text-field>
+        <v-text-field label="to" v-model="slider2Model.to"></v-text-field>
       </v-col>
     </v-row>
-
   </v-container>
 </template>
 
@@ -107,17 +78,17 @@ export default {
     'range-slider': RangeSlider
   },
   methods: {
-    sliderDateFormat (valueOfDate) {
+    sliderDateFormat(valueOfDate) {
       return moment(valueOfDate).format('YYYY-MM-DD HH:mm:ss')
     },
-    onFinishRangeSlider (data) {
+    onFinishRangeSlider(data) {
       // console.log('onFinishRangeSlider', data)
     },
-    onUpdateRangeSlider (data) {
+    onUpdateRangeSlider(data) {
       // console.log('onUpdateRangeSlider', data)
     }
   },
-  data () {
+  data() {
     return {
       slider1: {
         min: moment('2020-04-01', 'YYYY-MM-DD').valueOf(),

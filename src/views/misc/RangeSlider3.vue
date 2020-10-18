@@ -1,9 +1,5 @@
 <template>
-  <v-container
-    pl-12
-    pr-12
-  >
-
+  <v-container pl-12 pr-12>
     <range-slider
       :show_control="true"
       :play_step="3600 * 4 * 1000"
@@ -24,10 +20,7 @@
       @finish="onUpdateRangeSlider"
     />
 
-    <div
-      ref="chart"
-      style="width:100%;height:400px;"
-    />
+    <div ref="chart" style="width: 100%; height: 400px" />
 
     <br />
 
@@ -42,7 +35,6 @@
       Data credit：US Geological Survey<br />
       Department of the Interior / USGS
     </blockquote>
-
   </v-container>
 </template>
 
@@ -69,7 +61,7 @@ export default {
   components: {
     'range-slider': RangeSlider
   },
-  async mounted () {
+  async mounted() {
     //
     // World map
     //
@@ -111,11 +103,11 @@ export default {
     circle.tooltipText = '{time}\n{place}\nMagnitude:{magN}\nDepth:{depthN}'
 
     imageSeries.heatRules.push({
-      'target': circle,
-      'property': 'radius',
-      'min': 4,
-      'max': 20,
-      'dataField': 'value'
+      target: circle,
+      property: 'radius',
+      min: 4,
+      max: 20,
+      dataField: 'value'
     })
 
     this.F.amcharts.chart = chart
@@ -124,7 +116,7 @@ export default {
     //
     // Data source
     //
-    const response = await axios.get('/data/Earthquake201912.csv')
+    const response = await axios.get('data/Earthquake201912.csv')
     const csv = response.data
     const source = csvSync.parse(csv, {
       columns: true,
@@ -143,28 +135,32 @@ export default {
     //
     // Data table
     //
-    const minTime = Enumerable.from(this.F.data.source).min(x => x.time)
-    const maxTime = Enumerable.from(this.F.data.source).max(x => x.time)
+    const minTime = Enumerable.from(this.F.data.source).min((x) => x.time)
+    const maxTime = Enumerable.from(this.F.data.source).max((x) => x.time)
 
     this.slider.min = moment(minTime).tz('UTC').hours(0).minutes(0).seconds(0).valueOf()
-    this.slider.max = moment(maxTime).tz('UTC').hours(0).minutes(0).seconds(0).add(1, 'days').valueOf()
+    this.slider.max = moment(maxTime)
+      .tz('UTC')
+      .hours(0)
+      .minutes(0)
+      .seconds(0)
+      .add(1, 'days')
+      .valueOf()
     this.slider.from = this.slider.min
     // this.slider.to = moment(maxTime).valueOf()
     this.slider.to = moment(this.slider.from).tz('UTC').add(1, 'days').valueOf()
 
     // Initial data
-    const items =
-        Enumerable
-          .from(this.F.data.source)
-          .where(x => minTime <= x.time)
-          .where(x => x.time <= maxTime)
-          .toArray()
+    const items = Enumerable.from(this.F.data.source)
+      .where((x) => minTime <= x.time)
+      .where((x) => x.time <= maxTime)
+      .toArray()
 
     // Bind data
     this.F.amcharts.imageSeries.data = items
     this.datatable.items = items
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.F.amcharts.chart) {
       this.F.amcharts.imageSeries = undefined
       this.F.amcharts.chart.dispose()
@@ -172,28 +168,26 @@ export default {
     }
   },
   methods: {
-    sliderDateFormat (valueOfDate) {
+    sliderDateFormat(valueOfDate) {
       return moment(valueOfDate).tz('UTC').format()
     },
-    onUpdateRangeSlider (data) {
+    onUpdateRangeSlider(data) {
       // Conditions
       const fromTime = moment(data.from).tz('UTC').format()
       const toTime = moment(data.to).tz('UTC').format()
 
       // Filter items
-      const items =
-        Enumerable
-          .from(this.F.data.source)
-          .where(x => fromTime <= x.time)
-          .where(x => x.time <= toTime)
-          .toArray()
+      const items = Enumerable.from(this.F.data.source)
+        .where((x) => fromTime <= x.time)
+        .where((x) => x.time <= toTime)
+        .toArray()
 
       // Bind data
       this.F.amcharts.imageSeries.data = items
       this.datatable.items = items
     }
   },
-  data () {
+  data() {
     return {
       F: Object.freeze({
         data: { source: undefined },

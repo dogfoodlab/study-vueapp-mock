@@ -1,9 +1,6 @@
 <template>
   <v-container>
-    <div
-      ref="chart"
-      style="width:100%;height:500px;"
-    />
+    <div ref="chart" style="width: 100%; height: 500px" />
   </v-container>
 </template>
 
@@ -14,107 +11,127 @@ import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 am4core.useTheme(am4themesAnimated)
 
 export default {
-  mounted () {
+  mounted() {
     // Create chart instance
     const chart = am4core.create(this.$refs.chart, am4charts.XYChart)
 
     // Add data
-    chart.data = [{
-      'year': '1994',
-      'cars': 1587,
-      'motorcycles': 650,
-      'bicycles': 121
-    }, {
-      'year': '1995',
-      'cars': 1567,
-      'motorcycles': 683,
-      'bicycles': 146
-    }, {
-      'year': '1996',
-      'cars': 1617,
-      'motorcycles': 691,
-      'bicycles': 138
-    }, {
-      'year': '1997',
-      'cars': 1630,
-      'motorcycles': 642,
-      'bicycles': 127
-    }, {
-      'year': '1998',
-      'cars': 1660,
-      'motorcycles': 699,
-      'bicycles': 105
-    }, {
-      'year': '1999',
-      'cars': 1683,
-      'motorcycles': 721,
-      'bicycles': 109
-    }, {
-      'year': '2000',
-      'cars': 1691,
-      'motorcycles': 737,
-      'bicycles': 112
-    }, {
-      'year': '2001',
-      'cars': 1298,
-      'motorcycles': 680,
-      'bicycles': 101
-    }, {
-      'year': '2002',
-      'cars': 1275,
-      'motorcycles': 664,
-      'bicycles': 97
-    }, {
-      'year': '2003',
-      'cars': 1246,
-      'motorcycles': 648,
-      'bicycles': 93
-    }, {
-      'year': '2004',
-      'cars': 1318,
-      'motorcycles': 697,
-      'bicycles': 111
-    }, {
-      'year': '2005',
-      'cars': 1213,
-      'motorcycles': 633,
-      'bicycles': 87
-    }, {
-      'year': '2006',
-      'cars': 1199,
-      'motorcycles': 621,
-      'bicycles': 79
-    }, {
-      'year': '2007',
-      'cars': 1110,
-      'motorcycles': 210,
-      'bicycles': 81
-    }, {
-      'year': '2008',
-      'cars': 1165,
-      'motorcycles': 232,
-      'bicycles': 75
-    }, {
-      'year': '2009',
-      'cars': 1145,
-      'motorcycles': 219,
-      'bicycles': 88
-    }, {
-      'year': '2010',
-      'cars': 1163,
-      'motorcycles': 201,
-      'bicycles': 82
-    }, {
-      'year': '2011',
-      'cars': 1180,
-      'motorcycles': 285,
-      'bicycles': 87
-    }, {
-      'year': '2012',
-      'cars': 1159,
-      'motorcycles': 277,
-      'bicycles': 71
-    }]
+    chart.data = [
+      {
+        year: '1994',
+        cars: 1587,
+        motorcycles: 650,
+        bicycles: 121
+      },
+      {
+        year: '1995',
+        cars: 1567,
+        motorcycles: 683,
+        bicycles: 146
+      },
+      {
+        year: '1996',
+        cars: 1617,
+        motorcycles: 691,
+        bicycles: 138
+      },
+      {
+        year: '1997',
+        cars: 1630,
+        motorcycles: 642,
+        bicycles: 127
+      },
+      {
+        year: '1998',
+        cars: 1660,
+        motorcycles: 699,
+        bicycles: 105
+      },
+      {
+        year: '1999',
+        cars: 1683,
+        motorcycles: 721,
+        bicycles: 109
+      },
+      {
+        year: '2000',
+        cars: 1691,
+        motorcycles: 737,
+        bicycles: 112
+      },
+      {
+        year: '2001',
+        cars: 1298,
+        motorcycles: 680,
+        bicycles: 101
+      },
+      {
+        year: '2002',
+        cars: 1275,
+        motorcycles: 664,
+        bicycles: 97
+      },
+      {
+        year: '2003',
+        cars: 1246,
+        motorcycles: 648,
+        bicycles: 93
+      },
+      {
+        year: '2004',
+        cars: 1318,
+        motorcycles: 697,
+        bicycles: 111
+      },
+      {
+        year: '2005',
+        cars: 1213,
+        motorcycles: 633,
+        bicycles: 87
+      },
+      {
+        year: '2006',
+        cars: 1199,
+        motorcycles: 621,
+        bicycles: 79
+      },
+      {
+        year: '2007',
+        cars: 1110,
+        motorcycles: 210,
+        bicycles: 81
+      },
+      {
+        year: '2008',
+        cars: 1165,
+        motorcycles: 232,
+        bicycles: 75
+      },
+      {
+        year: '2009',
+        cars: 1145,
+        motorcycles: 219,
+        bicycles: 88
+      },
+      {
+        year: '2010',
+        cars: 1163,
+        motorcycles: 201,
+        bicycles: 82
+      },
+      {
+        year: '2011',
+        cars: 1180,
+        motorcycles: 285,
+        bicycles: 87
+      },
+      {
+        year: '2012',
+        cars: 1159,
+        motorcycles: 277,
+        bicycles: 71
+      }
+    ]
 
     // Create axes
     chart.dateFormatter.inputDateFormat = 'yyyy'
@@ -135,7 +152,8 @@ export default {
     series.dataFields.dateX = 'year'
     series.name = 'cars'
     series.dataFields.valueY = 'cars'
-    series.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/car.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>"
+    series.tooltipHTML =
+      "<img src='https://www.amcharts.com/lib/3/images/car.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>"
     series.tooltipText = '[#000]{valueY.value}[/]'
     series.tooltip.background.fill = am4core.color('#FFF')
     series.tooltip.getStrokeFromObject = true
@@ -149,7 +167,8 @@ export default {
     series2.name = 'motorcycles'
     series2.dataFields.dateX = 'year'
     series2.dataFields.valueY = 'motorcycles'
-    series2.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/motorcycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>"
+    series2.tooltipHTML =
+      "<img src='https://www.amcharts.com/lib/3/images/motorcycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>"
     series2.tooltipText = '[#000]{valueY.value}[/]'
     series2.tooltip.background.fill = am4core.color('#FFF')
     series2.tooltip.getFillFromObject = false
@@ -164,7 +183,8 @@ export default {
     series3.name = 'bicycles'
     series3.dataFields.dateX = 'year'
     series3.dataFields.valueY = 'bicycles'
-    series3.tooltipHTML = "<img src='https://www.amcharts.com/lib/3/images/bicycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>"
+    series3.tooltipHTML =
+      "<img src='https://www.amcharts.com/lib/3/images/bicycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>"
     series3.tooltipText = '[#000]{valueY.value}[/]'
     series3.tooltip.background.fill = am4core.color('#FFF')
     series3.tooltip.getFillFromObject = false
@@ -212,12 +232,12 @@ export default {
     // Set property.
     this.F.amcharts.chart = chart
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.F.amcharts.chart) {
       this.F.amcharts.chart.dispose()
     }
   },
-  data () {
+  data() {
     return {
       F: Object.freeze({
         amcharts: { chart: undefined }

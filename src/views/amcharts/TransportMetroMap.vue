@@ -1,9 +1,6 @@
 <template>
   <v-container>
-    <div
-      ref="chart"
-      style="width:1000px;height:500px;"
-    />
+    <div ref="chart" style="width: 1000px; height: 500px" />
   </v-container>
 </template>
 
@@ -14,7 +11,7 @@ import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 am4core.useTheme(am4themesAnimated)
 
 export default {
-  mounted  () {
+  mounted() {
     // Create chart instance
     const chart = am4core.create(this.$refs.chart, am4charts.XYChart)
     chart.padding(0, 0, 0, 0)
@@ -29,7 +26,7 @@ export default {
     title.x = 10
     title.y = 10
 
-    function createAxis (list) {
+    function createAxis(list) {
       const axis = list.push(new am4charts.ValueAxis())
       axis.min = 0
       axis.max = 100
@@ -43,7 +40,7 @@ export default {
     createAxis(chart.xAxes)
     createAxis(chart.yAxes)
 
-    function createLine (name, color, data) {
+    function createLine(name, color, data) {
       // Create series
       const series = chart.series.push(new am4charts.StepLineSeries())
       series.data = data
@@ -72,7 +69,7 @@ export default {
       bullet.circle.tooltipText = '{station}'
     }
 
-    function createConnector (data) {
+    function createConnector(data) {
       // Create series
       const series = chart.series.push(new am4charts.LineSeries())
       series.data = data
@@ -956,12 +953,12 @@ export default {
     // Set property.
     this.F.amcharts.chart = chart
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.F.amcharts.chart) {
       this.F.amcharts.chart.dispose()
     }
   },
-  data () {
+  data() {
     return {
       F: Object.freeze({
         amcharts: { chart: undefined }

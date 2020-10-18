@@ -1,12 +1,6 @@
 <template>
   <v-app id="complex">
-
-    <v-navigation-drawer
-      v-model="drawerRight"
-      app
-      clipped
-      right
-    >
+    <v-navigation-drawer v-model="drawerRight" app clipped right>
       <v-list dense>
         <v-list-item @click.stop="right = !right">
           <v-list-item-action>
@@ -19,22 +13,14 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      clipped-right
-      color="blue-grey"
-      dark
-    >
+    <v-app-bar app clipped-right color="blue-grey" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>Toolbar</v-toolbar-title>
       <div class="flex-grow-1"></div>
       <v-app-bar-nav-icon @click.stop="drawerRight = !drawerRight"></v-app-bar-nav-icon>
     </v-app-bar>
 
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
+    <v-navigation-drawer v-model="drawer" app>
       <v-list dense>
         <v-list-item @click.stop="left = !left">
           <v-list-item-action>
@@ -47,31 +33,15 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-navigation-drawer
-      v-model="left"
-      fixed
-      temporary
-    ></v-navigation-drawer>
+    <v-navigation-drawer v-model="left" fixed temporary></v-navigation-drawer>
 
-    <v-content>
-      <v-container
-        class="fill-height"
-        fluid
-      >
-        <v-row
-          justify="center"
-          align="center"
-        >
+    <v-main>
+      <v-container class="fill-height" fluid>
+        <v-row justify="center" align="center">
           <v-col class="shrink">
             <v-tooltip right>
               <template v-slot:activator="{ on }">
-                <v-btn
-                  :href="source"
-                  icon
-                  large
-                  target="_blank"
-                  v-on="on"
-                >
+                <v-btn :href="source" icon large target="_blank" v-on="on">
                   <v-icon large>mdi-code-tags</v-icon>
                 </v-btn>
               </template>
@@ -94,25 +64,15 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-content>
+    </v-main>
 
-    <v-navigation-drawer
-      v-model="right"
-      fixed
-      right
-      temporary
-    ></v-navigation-drawer>
+    <v-navigation-drawer v-model="right" fixed right temporary></v-navigation-drawer>
 
-    <v-footer
-      app
-      color="blue-grey"
-      class="white--text"
-    >
+    <v-footer app color="blue-grey" class="white--text">
       <span>Vuetify</span>
       <div class="flex-grow-1"></div>
       <span>&copy; 2019</span>
     </v-footer>
-
   </v-app>
 </template>
 

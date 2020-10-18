@@ -1,9 +1,6 @@
 <template>
   <v-container>
-    <div
-      ref="chart"
-      style="width:100%;height:500px;"
-    />
+    <div ref="chart" style="width: 100%; height: 500px" />
   </v-container>
 </template>
 
@@ -14,51 +11,65 @@ import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 am4core.useTheme(am4themesAnimated)
 
 export default {
-  mounted () {
+  mounted() {
     // Create chart instance
     const chart = am4core.create(this.$refs.chart, am4charts.XYChart)
 
     // Add data
-    chart.data = [{
-      'country': 'USA',
-      'visits': 2025
-    }, {
-      'country': 'China',
-      'visits': 1882
-    }, {
-      'country': 'Japan',
-      'visits': 1809
-    }, {
-      'country': 'Germany',
-      'visits': 1322
-    }, {
-      'country': 'UK',
-      'visits': 1122
-    }, {
-      'country': 'France',
-      'visits': 1114
-    }, {
-      'country': 'India',
-      'visits': 984
-    }, {
-      'country': 'Spain',
-      'visits': 711
-    }, {
-      'country': 'Netherlands',
-      'visits': 665
-    }, {
-      'country': 'Russia',
-      'visits': 580
-    }, {
-      'country': 'South Korea',
-      'visits': 443
-    }, {
-      'country': 'Canada',
-      'visits': 441
-    }, {
-      'country': 'Brazil',
-      'visits': 395
-    }]
+    chart.data = [
+      {
+        country: 'USA',
+        visits: 2025
+      },
+      {
+        country: 'China',
+        visits: 1882
+      },
+      {
+        country: 'Japan',
+        visits: 1809
+      },
+      {
+        country: 'Germany',
+        visits: 1322
+      },
+      {
+        country: 'UK',
+        visits: 1122
+      },
+      {
+        country: 'France',
+        visits: 1114
+      },
+      {
+        country: 'India',
+        visits: 984
+      },
+      {
+        country: 'Spain',
+        visits: 711
+      },
+      {
+        country: 'Netherlands',
+        visits: 665
+      },
+      {
+        country: 'Russia',
+        visits: 580
+      },
+      {
+        country: 'South Korea',
+        visits: 443
+      },
+      {
+        country: 'Canada',
+        visits: 441
+      },
+      {
+        country: 'Brazil',
+        visits: 395
+      }
+    ]
 
     // Create axes
     const categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis())
@@ -68,7 +79,7 @@ export default {
     categoryAxis.renderer.fontSize = 14
 
     categoryAxis.renderer.labels.template.adapter.add('dy', function (dy, target) {
-      if (target.dataItem && (target.dataItem.index % 2) !== 0) {
+      if (target.dataItem && target.dataItem.index % 2 !== 0) {
         return dy + 25
       }
       return dy
@@ -92,12 +103,12 @@ export default {
     // Set property.
     this.F.amcharts.chart = chart
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.F.amcharts.chart) {
       this.F.amcharts.chart.dispose()
     }
   },
-  data () {
+  data() {
     return {
       F: Object.freeze({
         amcharts: { chart: undefined }

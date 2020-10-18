@@ -1,9 +1,6 @@
 <template>
   <v-container>
-    <div
-      ref="chart"
-      style="width:100%;height:500px;"
-    />
+    <div ref="chart" style="width: 100%; height: 500px" />
   </v-container>
 </template>
 
@@ -14,13 +11,14 @@ import am4themesAnimated from '@amcharts/amcharts4/themes/animated'
 am4core.useTheme(am4themesAnimated)
 
 export default {
-  mounted () {
+  mounted() {
     // Create chart instance
     const chart = am4core.create(this.$refs.chart, am4charts.XYChart)
 
     const data = []
     let price = 100
     let quantity = 1000
+
     for (var i = 0; i < 300; i++) {
       price += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 100)
       quantity += Math.round((Math.random() < 0.5 ? 1 : -1) * Math.random() * 1000)
@@ -62,7 +60,9 @@ export default {
     valueAxis.renderer.fontSize = '0.8em'
 
     // uncomment these lines to fill plot area of this axis with some color
-    valueAxis.renderer.gridContainer.background.fill = interfaceColors.getFor('alternativeBackground')
+    valueAxis.renderer.gridContainer.background.fill = interfaceColors.getFor(
+      'alternativeBackground'
+    )
     valueAxis.renderer.gridContainer.background.fillOpacity = 0.05
 
     const series = chart.series.push(new am4charts.LineSeries())
@@ -86,7 +86,9 @@ export default {
     valueAxis2.renderer.fontSize = '0.8em'
 
     // uncomment these lines to fill plot area of this axis with some color
-    valueAxis2.renderer.gridContainer.background.fill = interfaceColors.getFor('alternativeBackground')
+    valueAxis2.renderer.gridContainer.background.fill = interfaceColors.getFor(
+      'alternativeBackground'
+    )
     valueAxis2.renderer.gridContainer.background.fillOpacity = 0.05
 
     const series2 = chart.series.push(new am4charts.ColumnSeries())
@@ -108,12 +110,12 @@ export default {
     // Set property.
     this.F.amcharts.chart = chart
   },
-  beforeDestroy () {
+  beforeDestroy() {
     if (this.F.amcharts.chart) {
       this.F.amcharts.chart.dispose()
     }
   },
-  data () {
+  data() {
     return {
       F: Object.freeze({
         amcharts: { chart: undefined }

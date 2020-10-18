@@ -1,9 +1,5 @@
 <template>
-  <v-container
-    pl-12
-    pr-12
-  >
-
+  <v-container pl-12 pr-12>
     <range-slider
       skin="flat"
       type="double"
@@ -30,7 +26,6 @@
       Data credit：US Geological Survey<br />
       Department of the Interior / USGS
     </blockquote>
-
   </v-container>
 </template>
 
@@ -51,48 +46,44 @@ export default {
   components: {
     'range-slider': RangeSlider
   },
-  async mounted () {
-    const response = await axios.get('/data/Earthquake201912.csv')
+  async mounted() {
+    const response = await axios.get('data/Earthquake201912.csv')
     const csv = response.data
     const source = csvSync.parse(csv, { columns: true })
     this.F.data.source = source
 
-    const minTime = Enumerable.from(this.F.data.source).min(x => x.time)
-    const maxTime = Enumerable.from(this.F.data.source).max(x => x.time)
+    const minTime = Enumerable.from(this.F.data.source).min((x) => x.time)
+    const maxTime = Enumerable.from(this.F.data.source).max((x) => x.time)
 
     this.slider.min = moment(minTime).valueOf()
     this.slider.max = moment(maxTime).valueOf()
     this.slider.from = moment(minTime).valueOf()
     this.slider.to = moment(maxTime).valueOf()
 
-    const items =
-        Enumerable
-          .from(this.F.data.source)
-          .where(x => minTime <= x.time)
-          .where(x => x.time <= maxTime)
-          .toArray()
+    const items = Enumerable.from(this.F.data.source)
+      .where((x) => minTime <= x.time)
+      .where((x) => x.time <= maxTime)
+      .toArray()
 
     this.datatable.items = items
   },
   methods: {
-    sliderDateFormat (valueOfDate) {
+    sliderDateFormat(valueOfDate) {
       return moment(valueOfDate).tz('UTC').format()
     },
-    onFinishRangeSlider (slider) {
+    onFinishRangeSlider(slider) {
       const fromTime = moment(slider.from).tz('UTC').format()
       const toTime = moment(slider.to).tz('UTC').format()
 
-      const items =
-        Enumerable
-          .from(this.F.data.source)
-          .where(x => fromTime <= x.time)
-          .where(x => x.time <= toTime)
-          .toArray()
+      const items = Enumerable.from(this.F.data.source)
+        .where((x) => fromTime <= x.time)
+        .where((x) => x.time <= toTime)
+        .toArray()
 
       this.datatable.items = items
     }
   },
-  data () {
+  data() {
     return {
       F: Object.freeze({
         data: { source: undefined }
