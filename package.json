@@ -13,7 +13,7 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.7",
     "@amcharts/amcharts4-geodata": "^4.1.17",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "csv": "^5.3.2",
     "highcharts": "^8.2.0",
